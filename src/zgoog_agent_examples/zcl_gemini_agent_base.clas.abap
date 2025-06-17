@@ -24,6 +24,13 @@ public section.
       END OF ty_tool_definition .
   types:
     tt_tool_definitions TYPE STANDARD TABLE OF ty_tool_definition WITH EMPTY KEY .
+  types:
+    BEGIN OF ty_inline_file_data,
+        mime_type	         TYPE string,
+        file_data	         TYPE string,
+        video_start_offset TYPE string,
+        video_end_offset   TYPE string,
+      END OF ty_inline_file_data .
 
   constants:
       "! <p>Agent specific constants</p>
@@ -61,6 +68,10 @@ public section.
   methods INITIALIZE_AGENT
     raising
       /GOOG/CX_SDK .
+  methods GET_INLINE_DATA
+  abstract
+    returning
+      value(R_RESULT) type TY_INLINE_FILE_DATA .
   PROTECTED SECTION.
     DATA mo_model            TYPE REF TO /goog/cl_generative_model.
     DATA mv_last_response    TYPE string.
@@ -99,6 +110,7 @@ CLASS ZCL_GEMINI_AGENT_BASE IMPLEMENTATION.
     DATA(lv_model_id) = get_model_id( ). " Call abstract method
     DATA(lv_system_instruction) = get_system_instruction( ). " Call abstract method
     DATA(lt_tools) = get_tool_definitions( ). " Call abstract method
+    DATA(ls_inline_data) = get_inline_data( ). "Call abstract method
 
     TRY.
         " 1. Create the Model Instance
@@ -107,10 +119,20 @@ CLASS ZCL_GEMINI_AGENT_BASE IMPLEMENTATION.
         " 2. Set System Instructions
         mo_model->set_system_instructions( lv_system_instruction ).
 
+        mo_model->set_generation_config( iv_response_mime_type = 'application/json'   ).
+
         " 3. Register Tools (Function Declarations) if any
         IF lt_tools IS NOT INITIAL.
           register_tools( lt_tools ).
           mo_model->set_auto_invoke_sap_function( abap_true ).
+        ENDIF.
+
+        " 4. Set Inline Data is available
+        IF ls_inline_data IS NOT INITIAL.
+          mo_model->set_inline_data( iv_mime_type          = ls_inline_data-mime_type
+                                     iv_data               = ls_inline_data-file_data
+                                     iv_video_start_offset = ls_inline_data-video_start_offset
+                                     iv_video_end_offset   = ls_inline_data-video_end_offset ).
         ENDIF.
 
         mv_is_initialized = abap_true.

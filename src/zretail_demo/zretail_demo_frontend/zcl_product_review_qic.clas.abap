@@ -1,17 +1,3 @@
-**********************************************************************
-*  Copyright 2025 Google LLC                                         *
-*                                                                    *
-*  Licensed under the Apache License, Version 2.0 (the "License");   *
-*  you may not use this file except in compliance with the License.  *
-*  You may obtain a copy of the License at                           *
-*      https://www.apache.org/licenses/LICENSE-2.0                   *
-*  Unless required by applicable law or agreed to in writing,        *
-*  software distributed under the License is distributed on an       *
-*  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,      *
-*  either express or implied.                                        *
-*  See the License for the specific language governing permissions   *
-*  and limitations under the License.                                *
-**********************************************************************
 CLASS zcl_product_review_qic DEFINITION
   PUBLIC
   FINAL
@@ -64,7 +50,7 @@ CLASS ZCL_PRODUCT_REVIEW_QIC IMPLEMENTATION.
           CREATE OBJECT lo_bq_client
             EXPORTING
               iv_key_name = 'RETAIL_DEMO'.
-          ls_input_bq-query  = |SELECT * FROM your-project-id.epm_shop.product_reviews_sap WHERE product_id = '{ lv_product_id }'|.
+          ls_input_bq-query  = |SELECT * FROM gcpsaptesting.epm_shop.product_reviews_sap WHERE product_id = '{ lv_product_id }'|.
 
           CALL METHOD lo_bq_client->query_jobs
             EXPORTING

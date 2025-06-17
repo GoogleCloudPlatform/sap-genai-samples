@@ -14,10 +14,14 @@ CLASS zcl_weather_agent DEFINITION
 ENDCLASS.
 
 
-CLASS zcl_weather_agent IMPLEMENTATION.
+
+CLASS ZCL_WEATHER_AGENT IMPLEMENTATION.
+
+
   METHOD get_model_id.
     r_result = model_keys-gemini_flash. " Or a specific model
   ENDMETHOD.
+
 
   METHOD get_system_instruction.
     r_result =
@@ -43,6 +47,7 @@ CLASS zcl_weather_agent IMPLEMENTATION.
     |information outside of weather, earthquakes, | &&
     |storms, and air quality.|.
   ENDMETHOD.
+
 
   METHOD get_tool_definitions.
     r_result = VALUE #(

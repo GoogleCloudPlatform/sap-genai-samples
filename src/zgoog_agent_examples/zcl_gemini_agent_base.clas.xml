@@ -18,6 +18,11 @@
      <DESCRIPT>Ensure the model object exists and close the connection</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>GET_INLINE_DATA</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>ABSTRACT: Subclass must provide the specific system instruct</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>GET_MODEL_ID</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>ABSTRACT: Subclass must provide the specific system instruct</DESCRIPT>
@@ -78,6 +83,11 @@
      <DESCRIPT>Tool parameters (Table)</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>TY_INLINE_FILE_DATA</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Type for defining agent inline data (raw file data)</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>TY_TOOL_DEFINITION</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Type for defining agent tools (ABAP Functions/Methods)</DESCRIPT>
@@ -89,6 +99,12 @@
     </SEOCOMPOTX>
    </DESCRIPTIONS>
    <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_INLINE_DATA</CMPNAME>
+     <SCONAME>R_RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Type for defining agent inline data (raw file data)</DESCRIPT>
+    </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>GET_MODEL_ID</CMPNAME>
      <SCONAME>R_RESULT</SCONAME>

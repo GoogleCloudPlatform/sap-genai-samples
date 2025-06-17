@@ -1,17 +1,3 @@
-**********************************************************************
-*  Copyright 2025 Google LLC                                         *
-*                                                                    *
-*  Licensed under the Apache License, Version 2.0 (the "License");   *
-*  you may not use this file except in compliance with the License.  *
-*  You may obtain a copy of the License at                           *
-*      https://www.apache.org/licenses/LICENSE-2.0                   *
-*  Unless required by applicable law or agreed to in writing,        *
-*  software distributed under the License is distributed on an       *
-*  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,      *
-*  either express or implied.                                        *
-*  See the License for the specific language governing permissions   *
-*  and limitations under the License.                                *
-**********************************************************************
 CLASS zcl_product_search_qic DEFINITION
   PUBLIC
   FINAL
@@ -215,6 +201,7 @@ METHOD if_rap_query_provider~select.
   DATA lt_data   TYPE STANDARD TABLE OF zce_product_read.
   DATA(lv_top)  = io_request->get_paging( )->get_page_size( ).
   DATA(lv_skip) = io_request->get_paging( )->get_offset( ).
+  " TODO: variable is assigned but never used (ABAP cleaner)
   DATA(ld_is_data_requested) = io_request->is_data_requested( ).
   DATA(lt_sort_order) = CORRESPONDING abap_sortorder_tab( io_request->get_sort_elements( ) MAPPING name = element_name ).
 
@@ -374,7 +361,8 @@ METHOD if_rap_query_provider~select.
 
     APPEND VALUE #(
      productid = ls_product_attr->product_id
-     imageurl = |https://<sap_host>:<port_no>/sap/opu/odata/sap/SEPMRA_SHOP/Images(ProductId='{ ls_product_attr->product_id }',Id='{ ls_product_attr->imageid }')/$value|
+     imageurl = |https://34.172.115.13:50001/sap/opu/odata/sap/SEPMRA_SHOP/Images(ProductId='{ ls_product_attr->product_id }',Id='{ ls_product_attr->imageid }')/$value|
+*       imageurl = |http://gcdfs4dev.sapdev.google.com:8000/sap/opu/odata/sap/SEPMRA_SHOP/Images(ProductId='{ ls_product_attr->product_id }',Id='DUMMY')/$value|
      productname = ls_product_attr->product_name
      stockquantity = ls_product_attr->stock_quantity
      quantityunit = ls_product_attr->quantity_unit

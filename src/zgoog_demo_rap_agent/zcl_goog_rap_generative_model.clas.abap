@@ -258,7 +258,7 @@ CLASS ZCL_GOOG_RAP_GENERATIVE_MODEL IMPLEMENTATION.
     INSERT VALUE #( step = lines( gt_execution_plan[] ) + 1 ) INTO TABLE gt_execution_plan
            REFERENCE INTO DATA(ls_execution_plan) .
     APPEND CONV #( |Calling tool { ls_rap_tool->name }| ) TO ls_execution_plan->details.
-    APPEND CONV #( |  - Implemented by RAP service { ls_rap_tool->implementation-service } | ) TO ls_execution_plan->details.
+    APPEND CONV #( |  - Implemented by API { ls_rap_tool->implementation-service } | ) TO ls_execution_plan->details.
     APPEND CONV #( |  - Perfoming operation { ls_rap_tool->implementation-operation } on entity { ls_rap_tool->implementation-entity } | ) TO ls_execution_plan->details.
     LOOP AT it_function_parameters REFERENCE INTO DATA(ls_func_param_output).
       APPEND CONV #( |  - With Parameters name { ls_func_param_output->parameter_name } and Value { ls_func_param_output->parameter_value } | ) TO ls_execution_plan->details.
