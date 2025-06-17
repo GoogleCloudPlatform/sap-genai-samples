@@ -11,6 +11,7 @@
     <item>/README.md</item>
     <item>/*.md</item>
     <item>/*.pdf</item>
+    <item>/*/.abapgit.xml</item>
    </IGNORE>
   </DATA>
  </asx:values>
