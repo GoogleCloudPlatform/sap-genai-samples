@@ -61,14 +61,14 @@ CLASS ZCL_WEATHER_AGENT IMPLEMENTATION.
           parameters     = VALUE tt_tool_parameters(
                                      type        = 'string'
                                      is_required = abap_true
-                                     ( name = 'LOCATION'  description = 'Location details to identify Geocode' ) ) )
+                                     ( name = 'location'  description = 'Location details to identify Geocode' ) ) )
         ( name           = 'Z_TOOL_GET_AIR_QUALITY'            " Tool-3
           description    = 'Gets air quality information for a given location specified by latitude and longitude'
           implementation = 'Z_TOOL_GET_AIR_QUALITY' " For reference
           parameters     = VALUE tt_tool_parameters( type        = 'string'
                                                      is_required = abap_true
-                                                     ( name = 'LOCATION'  description = 'Location details' )
-                                                     ( name = 'LATITUDE'  description = 'Latitude of the location' )
-                                                     ( name = 'LONGITUDE' description = 'Longitude of the location' ) ) ) ).
+                                                     ( name = 'location'  description = 'Location details' )
+                                                     ( name = 'latitude'  description = 'Latitude of the location' )
+                                                     ( name = 'longitude' description = 'Longitude of the location' ) ) ) ).
   ENDMETHOD.
 ENDCLASS.
